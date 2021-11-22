@@ -6,39 +6,58 @@ public class Tabuleiro {
 	private int colunas;
 	private Peca[][] pecas;
 	
-	public Tabuleiro(int fileira, int colunas) {
-		this.fileiras = fileira;
+	public Tabuleiro(int fileiras, int colunas) {
+		if (fileiras < 1 || colunas < 1) {
+			throw new TabuleiroExcecao("Erro criando tabuleiro, é necessário ter uma linha ou uma coluna");
+		}
+		this.fileiras = fileiras;
 		this.colunas = colunas;
-		pecas = new Peca[fileira][colunas];
+		pecas = new Peca[fileiras][colunas];
 	}
 
 	public int getFileiras() {
 		return fileiras;
 	}
 
-	public void setFileiras(int linhas) {
-		this.fileiras = linhas;
-	}
-
 	public int getColunas() {
 		return colunas;
 	}
 
-	public void setColunas(int colunas) {
-		this.colunas = colunas;
+	public Peca pecas (int fileira , int coluna) {
+		if (!posicaoExistente(fileira, coluna)) {
+			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro");			
+		}
+		return pecas[fileira][coluna];
 	}
 	
-	public Peca pecas (int linha , int coluna) {
-		return pecas[linha][coluna];
-	}
-	
-	public Peca pecas(Posicao posicao) {
+	public Peca peca(Posicao posicao) {
+		if (!posicaoExistente(posicao)) {
+			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro");			
+		}
 		return pecas[posicao.getFileira()][posicao.getColuna()];
 	}
 	
 	public void lugarPeca(Peca peca, Posicao posicao) {
+		if (pecaExistente(posicao)) {
+			throw new TabuleiroExcecao("Já tem uma peça nesta posição " + posicao);
+		}
 		pecas[posicao.getFileira()][posicao.getColuna()]= peca;
 		peca.posicao = posicao;
+	}
+	
+	private boolean posicaoExistente(int fileira, int coluna) {
+		return fileira >= 0 && fileira < fileiras  && coluna >= 0 && coluna < colunas; //para verificar se há linhas  e colunas no tabuleiro 
+	}
+	
+	public boolean posicaoExistente(Posicao posicao) {
+		return posicaoExistente(posicao.getFileira(), posicao.getColuna());
+	}
+	
+	public boolean pecaExistente (Posicao posicao) {
+		if (!posicaoExistente(posicao)) {
+			throw new TabuleiroExcecao("Essa posição não existe no tabuleiro");			
+		}
+		return peca(posicao) != null;
 	}
 	
 
