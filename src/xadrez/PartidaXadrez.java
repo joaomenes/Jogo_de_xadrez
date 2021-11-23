@@ -1,5 +1,7 @@
 package xadrez;
 
+import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -23,6 +25,27 @@ public class PartidaXadrez {
 	    return part;
 	}
 	
+	public XadrezPecas executarMovimentoXadrez(XadrezPosicao origemPosicao, XadrezPosicao destinoPosicao) {
+		Posicao origem = origemPosicao.toPosicao();
+		Posicao destino = destinoPosicao.toPosicao();
+		validadeOrigemPosicao(origem);
+		Peca capturadaPeca = fazerMover(origem, destino);
+		return (XadrezPecas) capturadaPeca;
+	}
+	
+	private Peca fazerMover(Posicao origem, Posicao destino) {
+		Peca p = tabuleiro.removerPeca(origem);
+		Peca capturadaPeca = tabuleiro.removerPeca(destino);
+		tabuleiro.lugarPeca(p, destino);
+		return capturadaPeca;
+	}
+	
+	public void validadeOrigemPosicao(Posicao posicao) {
+		if (!tabuleiro.pecaExistente(posicao)) {
+			throw new XadrezExcecao("Não existe peça nessa posição de origem");
+		}
+	}
+	
 	private void LugarNovaPeca(char coluna, int fileira, XadrezPecas peca) {//Para instanciar as peças do xadrez informando o sistema do xadrez ao invés de matriz
 		tabuleiro.lugarPeca(peca, new XadrezPosicao(coluna, fileira).toPosicao());
 	}
@@ -32,6 +55,7 @@ public class PartidaXadrez {
 		LugarNovaPeca('d', 2, new Torre(tabuleiro, Cores.BRANCO));
 		LugarNovaPeca('e', 2, new Torre(tabuleiro, Cores.BRANCO));
 		LugarNovaPeca('e', 1, new Torre(tabuleiro, Cores.BRANCO));
+		LugarNovaPeca('c', 1, new Torre(tabuleiro, Cores.BRANCO));
 		LugarNovaPeca('d', 1, new Rei(tabuleiro, Cores.BRANCO));
 
 		LugarNovaPeca('c', 7, new Torre(tabuleiro, Cores.PRETO));
