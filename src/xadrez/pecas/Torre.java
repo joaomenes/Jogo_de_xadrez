@@ -15,5 +15,10 @@ public class Torre extends XadrezPecas {
 		return "T";
 	}
 	
+	@Override
+	public boolean[][] possivelMovimento() {
+		boolean[][] part = new boolean[getTabuleiro().getFileiras()][getTabuleiro().getColunas()];
+		return part;
+	}
 
 }
