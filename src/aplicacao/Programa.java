@@ -2,7 +2,9 @@ package aplicacao;
 
 
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -19,11 +21,12 @@ public class Programa {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		PartidaXadrez partidaXadrez = new PartidaXadrez();
+		List<XadrezPecas> capturada = new ArrayList<>();
 		
 		while(true) {
 			try {
 				UI.limparTela();
-				UI.printPartida(partidaXadrez);
+				UI.printPartida(partidaXadrez, capturada);
 				System.out.println();
 				System.out.println("Origem: ");
 				XadrezPosicao origem = UI.leituraXadrezPosicao(sc);
@@ -36,6 +39,10 @@ public class Programa {
 				XadrezPosicao destino = UI.leituraXadrezPosicao(sc);
 				
 				XadrezPecas capturadaPeca = partidaXadrez.executarMovimentoXadrez(origem, destino);
+				
+				if(capturadaPeca != null) {
+					capturada.add(capturadaPeca);
+				}
 			   }
 			catch (XadrezExcecao e) {
 				System.out.println(e.getMessage());

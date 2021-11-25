@@ -1,7 +1,10 @@
 package aplicacao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadrez.Cores;
 import xadrez.PartidaXadrez;
@@ -49,11 +52,13 @@ public class UI {  //UI = user interface
     	    }
     	}
     
-    public static void printPartida(PartidaXadrez partidaXadrez) {
+    public static void printPartida(PartidaXadrez partidaXadrez, List<XadrezPecas> capturada) {
     	printTabuleiro(partidaXadrez.getPecas());
     	System.out.println();
-    	System.out.println("Turno: "+ partidaXadrez.getTurno());
-    	System.out.println("Aguardando o Jogador: "+ partidaXadrez.getAtualJogador());
+    	printPecaCapturada(capturada);
+    	System.out.println();
+    	System.out.print("Turno: " +  partidaXadrez.getTurno());
+    	System.out.print("Aguardando o Jogador: "+ partidaXadrez.getAtualJogador());
     }
 	
 	public static void printTabuleiro(XadrezPecas[][] pecas) {
@@ -96,4 +101,22 @@ public class UI {  //UI = user interface
         }
         System.out.print(" ");
 	}
+	
+	private static void printPecaCapturada(List<XadrezPecas> capturada) { //imprimir a lista de peças capturadas
+		List<XadrezPecas> branca = capturada.stream().filter(x -> x.getCor() == Cores.BRANCO).collect(Collectors.toList());
+		List<XadrezPecas> preto = capturada.stream().filter(x -> x.getCor() == Cores.PRETO).collect(Collectors.toList());
+		System.out.print("Peças capturadas: ");
+		System.out.print("Brancas: ");
+		System.out.print(ANSI_WHITE); //para garantir que seja imprimida a cor Branca
+		System.out.print(Arrays.toString(branca.toArray())); //jeito de imprimir uma array de valores no JAVA
+		System.out.println(ANSI_RESET);// para resetar a cor da impressão
+		
+		System.out.print("Peças capturadas: ");
+		System.out.print("Pretas: ");
+		System.out.print(ANSI_YELLOW); //para garantir que seja imprimida a cor Preta
+		System.out.print(Arrays.toString(preto.toArray())); //jeito de imprimir uma array de valores no JAVA
+		System.out.print(ANSI_RESET);// para resetar a cor da impressão
+		
+	}
+	
 }
