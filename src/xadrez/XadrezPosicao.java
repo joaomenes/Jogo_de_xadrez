@@ -27,7 +27,7 @@ public class XadrezPosicao {
 		return new Posicao(8 - fileira, coluna - 'a');//converte a posição de xadrez para uma posição comum de matriz 
 	}
 	protected static XadrezPosicao paraPosicao(Posicao posicao) { //converte a posição de matriz para uma posição de xadrez
-		return new XadrezPosicao((char)('a' - posicao.getColuna()), 8 - posicao.getFileira());
+		return new XadrezPosicao((char)('a' + posicao.getColuna()), 8 - posicao.getFileira());
 	}
 	
 	@Override
