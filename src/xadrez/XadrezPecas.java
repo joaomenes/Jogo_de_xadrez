@@ -22,6 +22,14 @@ public abstract class XadrezPecas extends Peca {
 		return cor;
 	}
 	
+	public void aumentarMovimentacaoPeca() {
+		contadorDeMovimento ++;
+	}
+	
+	public void diminuirMovimentacaoPeca() {
+		contadorDeMovimento --;
+	}
+	
 	protected XadrezPosicao getXadrezPosicao() {
 		return XadrezPosicao.paraPosicao(posicao);//converte a posição de matriz para uma posição de xadrez
 	}
