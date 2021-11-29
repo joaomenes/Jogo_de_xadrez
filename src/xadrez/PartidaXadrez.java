@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -188,25 +189,45 @@ public class PartidaXadrez {
 	    return true;
 	}
 	
-	private void LugarNovaPeca(char coluna, int fileira, XadrezPecas peca) {//Para instanciar as peças do xadrez informando o sistema do xadrez ao invés de matriz
+	private void  LugarNovaPeca(char coluna, int fileira, XadrezPecas peca) {//Para instanciar as peças do xadrez informando o sistema do xadrez ao invés de matriz
 		tabuleiro.lugarPeca(peca, new XadrezPosicao(coluna, fileira).toPosicao());
 		pecasNoTabuleiro.add(peca);
 	}
 	
 	private void iniciaPartida () {
-		LugarNovaPeca('c', 2, new Torre(tabuleiro, Cores.BRANCO));
-		LugarNovaPeca('d', 2, new Torre(tabuleiro, Cores.BRANCO));
-		LugarNovaPeca('e', 2, new Torre(tabuleiro, Cores.BRANCO));
-		LugarNovaPeca('e', 1, new Torre(tabuleiro, Cores.BRANCO));
-		LugarNovaPeca('c', 1, new Torre(tabuleiro, Cores.BRANCO));
-		LugarNovaPeca('d', 1, new Rei(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('a', 1, new Torre(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('b', 1, new Cavaleiro(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('c', 1, new Bispo(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('d', 1, new Rainha(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('e', 1, new Rei(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('f', 1, new Bispo(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('g', 1, new Cavaleiro(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('h', 1, new Torre(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('a', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('b', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('c', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('d', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('e', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('f', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('g', 2, new Peao(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('h', 2, new Peao(tabuleiro, Cores.BRANCO));
 
-		LugarNovaPeca('c', 7, new Torre(tabuleiro, Cores.PRETO));
-		LugarNovaPeca('c', 8, new Torre(tabuleiro, Cores.PRETO));
-		LugarNovaPeca('d', 7, new Torre(tabuleiro, Cores.PRETO));
-		LugarNovaPeca('e', 7, new Torre(tabuleiro, Cores.PRETO));
-		LugarNovaPeca('e', 8, new Torre(tabuleiro, Cores.PRETO));
-		LugarNovaPeca('d', 8, new Rei(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('a', 8, new Torre(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('b', 8, new Cavaleiro(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('c', 8, new Bispo(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('d', 8, new Rainha(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('e', 8, new Rei(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('f', 8, new Bispo(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('g', 8, new Cavaleiro(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('h', 8, new Torre(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('a', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('b', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('c', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('d', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('e', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('f', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('g', 7, new Peao(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('h', 7, new Peao(tabuleiro, Cores.PRETO));
 	}
 	
 }
