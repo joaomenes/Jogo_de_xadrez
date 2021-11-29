@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.pecas.Bispo;
+import xadrez.pecas.Cavalo;
 import xadrez.pecas.Peao;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
@@ -196,12 +198,12 @@ public class PartidaXadrez {
 	
 	private void iniciaPartida () {
 		    LugarNovaPeca('a', 1, new Torre(tabuleiro, Cores.BRANCO));
-		    LugarNovaPeca('b', 1, new Cavaleiro(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('b', 1, new Cavalo(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('c', 1, new Bispo(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('d', 1, new Rainha(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('e', 1, new Rei(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('f', 1, new Bispo(tabuleiro, Cores.BRANCO));
-		    LugarNovaPeca('g', 1, new Cavaleiro(tabuleiro, Cores.BRANCO));
+		    LugarNovaPeca('g', 1, new Cavalo(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('h', 1, new Torre(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('a', 2, new Peao(tabuleiro, Cores.BRANCO));
 		    LugarNovaPeca('b', 2, new Peao(tabuleiro, Cores.BRANCO));
@@ -213,12 +215,12 @@ public class PartidaXadrez {
 		    LugarNovaPeca('h', 2, new Peao(tabuleiro, Cores.BRANCO));
 
 		    LugarNovaPeca('a', 8, new Torre(tabuleiro, Cores.PRETO));
-		    LugarNovaPeca('b', 8, new Cavaleiro(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('b', 8, new Cavalo(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('c', 8, new Bispo(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('d', 8, new Rainha(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('e', 8, new Rei(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('f', 8, new Bispo(tabuleiro, Cores.PRETO));
-		    LugarNovaPeca('g', 8, new Cavaleiro(tabuleiro, Cores.PRETO));
+		    LugarNovaPeca('g', 8, new Cavalo(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('h', 8, new Torre(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('a', 7, new Peao(tabuleiro, Cores.PRETO));
 		    LugarNovaPeca('b', 7, new Peao(tabuleiro, Cores.PRETO));
