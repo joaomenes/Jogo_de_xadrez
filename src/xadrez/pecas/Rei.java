@@ -5,12 +5,17 @@ package xadrez.pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Cores;
+import xadrez.PartidaXadrez;
 import xadrez.XadrezPecas;
+import xadrez.pecas.Torre;
 
 public class Rei extends XadrezPecas {
+	
+	private PartidaXadrez partidaXadrez;
 
-	public Rei(Tabuleiro tabuleiro, Cores cor) {
+	public Rei(Tabuleiro tabuleiro, Cores cor, PartidaXadrez partidaXadrez) {
 		super(tabuleiro, cor);
+		this.partidaXadrez = partidaXadrez;		
 	}
 	
 	@Override
@@ -21,6 +26,12 @@ public class Rei extends XadrezPecas {
 	private boolean podeMover(Posicao posicao) {
 		XadrezPecas p = (XadrezPecas)getTabuleiro().peca(posicao);
 		return p == null || p.getCor() != getCor();
+	}
+	
+	private boolean testTorreRoque(Posicao posicao) {
+		XadrezPecas  p = (XadrezPecas)getTabuleiro().peca(posicao);
+		return p  != null && p instanceof Torre && p.getCor() == getCor() && p.getContadorDeMovimento() == 0;
+		
 	}
 	
 	
@@ -78,7 +89,28 @@ public class Rei extends XadrezPecas {
 		part[p.getFileira()][p.getColuna()] = true;
 		}
 		
+		//Movimento especial Roque
+		if (getContadorDeMovimento() == 0 && !partidaXadrez.getCheck()) {
+			//Movimento especial roque pequeno ao lado do rei
+			Posicao posi1 = new Posicao(posicao.getFileira(), posicao.getColuna() + 3);
+			if (testTorreRoque(posi1)) {
+				Posicao p1 = new Posicao(posicao.getFileira(), posicao.getColuna() + 1);
+				Posicao p2 = new Posicao(posicao.getFileira(), posicao.getColuna() + 2);
+				if (getTabuleiro().peca(p1) == null && getTabuleiro().peca(p2) == null){
+					part[posicao.getFileira()][posicao.getColuna() + 2] = true;
+				}
+			} 
+			//Movimento especial roque grande ao lado da rainha
+			Posicao posi2 = new Posicao(posicao.getFileira(), posicao.getColuna() - 4);
+			if (testTorreRoque(posi2)) {
+				Posicao p1 = new Posicao(posicao.getFileira(), posicao.getColuna() - 1);
+				Posicao p2 = new Posicao(posicao.getFileira(), posicao.getColuna() - 2);
+				Posicao p3 = new Posicao(posicao.getFileira(), posicao.getColuna() - 3);
+				if (getTabuleiro().peca(p1) == null && getTabuleiro().peca(p2) == null && getTabuleiro().peca(p3) == null){
+					part[posicao.getFileira()][posicao.getColuna() - 2] = true;
+				}
+			} 
+		}
 		return part;
 	}
-
 }
