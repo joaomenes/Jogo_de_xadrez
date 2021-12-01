@@ -27,7 +27,7 @@ public class Bispo extends XadrezPecas {
 		while (getTabuleiro().posicaoExistente(p) && !getTabuleiro().pecaExistente(p)) {//enquanto a posicao p existir e estiver vaga será verdadeira
 			part[p.getFileira()][p.getColuna()] = true;
 		    p.setValores(p.getFileira() - 1, p.getColuna() - 1);
-	}
+	    }
 		if(getTabuleiro().posicaoExistente(p) && existeUmaPecaPosicaoOponente(p)) {
 			part[p.getFileira()][p.getColuna()] = true;	
 		}
